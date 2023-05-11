@@ -100,7 +100,7 @@ void subarray_with_given_sum(int a[], int s, int n){
     cout<<"-1 -1"<<endl;
 } 
 
-void max_sum_subarray(int a[], int n){
+int max_sum_subarray(int a[], int n){
     int maxsum=INT_MIN;
     int currsum=0;
     for(int i=0;i<n;i++){
@@ -110,7 +110,18 @@ void max_sum_subarray(int a[], int n){
         }
         maxsum=max(maxsum,currsum);
     }
-    cout<<maxsum<<endl;;
+    return maxsum;
+}
+
+void max_circular_sum_subarray(int a[], int n){
+    int nonwrapsum=max_sum_subarray(a,n);
+    int tsum=0;
+    for(int i=0;i<n;i++){
+        tsum+=a[i];
+        a[i]=-a[i];
+    }
+    int wrapsum = tsum+max_sum_subarray(a,n);
+    cout<<max(nonwrapsum,wrapsum)<<endl;;    
 }
 
 int main(){
@@ -120,6 +131,6 @@ int main(){
     for (int i=0; i<n; i++){
         cin>>a[i];
     }
-    max_sum_subarray(a,n);
+    max_circular_sum_subarray(a,n);
     return 0;
 }
