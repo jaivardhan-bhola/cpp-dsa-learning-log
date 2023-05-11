@@ -121,7 +121,7 @@ void max_circular_sum_subarray(int a[], int n){
         a[i]=-a[i];
     }
     int wrapsum = tsum+max_sum_subarray(a,n);
-    cout<<max(nonwrapsum,wrapsum)<<endl;;    
+    cout<<max(nonwrapsum,wrapsum)<<endl;
 }
 
 bool pairsum(int a[], int n, int pairsum){
